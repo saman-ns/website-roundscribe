@@ -1,0 +1,621 @@
+/* --- VARIABLES (same as landing page) --- */
+:root {
+    --primary: #0052CC;
+    --primary-dark: #003E99;
+    --secondary: #00B8D9;
+    --bg-light: #F4F5F7;
+    --text-dark: #172B4D;
+    --text-gray: #5E6C84;
+    --white: #FFFFFF;
+    --success: #36B37E;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: var(--text-dark);
+    line-height: 1.6;
+    background-color: var(--white);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: 0.2s;
+}
+
+ul {
+    list-style: none;
+}
+
+/* --- UTILITIES --- */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.section-padding {
+    padding: 80px 0;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+}
+
+.grid {
+    display: grid;
+    gap: 40px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 14px 28px;
+    background-color: var(--primary);
+    color: white;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    min-height: 48px;
+    min-width: 48px;
+    transition: 0.2s;
+}
+
+.btn:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+}
+
+.btn-outline:hover {
+    background: var(--bg-light);
+}
+
+/* --- HEADER (frosted glass, same as landing) --- */
+header {
+    padding: 20px 0;
+    border-bottom: 1px solid #EBECF0;
+    position: fixed;
+    width: 100%;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+}
+
+.nav-wrapper {
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.badge {
+    background: var(--secondary);
+    color: white;
+    font-size: 0.65rem;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* --- HERO --- */
+.hero {
+    padding-top: 130px;
+    padding-bottom: 60px;
+    background: radial-gradient(circle at top right, #E6FCFF 0%, #FFFFFF 50%);
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 2.75rem;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    letter-spacing: -1px;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    color: var(--text-gray);
+    max-width: 600px;
+    margin: 0 auto 24px auto;
+}
+
+.highlight {
+    color: var(--primary);
+}
+
+/* --- DEMO SECTION --- */
+.demo {
+    background: var(--bg-light);
+}
+
+.demo h2 {
+    font-size: 2rem;
+    margin-bottom: 12px;
+}
+
+.demo-sub {
+    font-size: 1.05rem;
+    color: var(--text-gray);
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.patient-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+/* --- PATIENT CARD (expandable) --- */
+.demo-patient-card {
+    background: white;
+    border: 2px solid #EBECF0;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    overflow: hidden;
+}
+
+.demo-patient-card:hover {
+    border-color: var(--primary);
+    box-shadow: 0 4px 16px rgba(0,82,204,0.08);
+}
+
+.demo-patient-card.active {
+    border-color: var(--primary);
+    box-shadow: 0 8px 30px rgba(0,82,204,0.12);
+}
+
+.card-header {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.card-room {
+    width: 48px;
+    height: 48px;
+    background: var(--bg-light);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.75rem;
+    color: var(--primary);
+    flex-shrink: 0;
+}
+
+.demo-patient-card.active .card-room {
+    background: var(--primary);
+    color: white;
+}
+
+.card-header-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.card-header-text h3 {
+    font-size: 1rem;
+    margin-bottom: 2px;
+}
+
+.card-header-text span {
+    font-size: 0.85rem;
+    color: var(--text-gray);
+}
+
+.card-toggle {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-gray);
+    font-size: 1.2rem;
+    transition: transform 0.3s;
+    flex-shrink: 0;
+}
+
+.demo-patient-card.active .card-toggle {
+    transform: rotate(180deg);
+    color: var(--primary);
+}
+
+/* Expandable content */
+.card-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+
+.demo-patient-card.active .card-body {
+    max-height: 800px;
+}
+
+.card-body-inner {
+    padding: 0 20px 20px 20px;
+}
+
+/* SOAP note display */
+.soap-note {
+    background: var(--bg-light);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: var(--text-dark);
+}
+
+.soap-note .soap-label {
+    font-weight: 700;
+    color: var(--primary);
+}
+
+/* Billing codes */
+.billing-codes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.billing-code-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    background: rgba(54,179,126,0.04);
+    border: 1px solid var(--success);
+    border-radius: 8px;
+}
+
+.code-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.code-label {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+}
+
+.code-desc {
+    font-size: 0.8rem;
+    color: var(--text-gray);
+}
+
+.code-fee {
+    font-weight: 700;
+    color: var(--success);
+    font-size: 0.95rem;
+    white-space: nowrap;
+}
+
+.billing-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    background: var(--text-dark);
+    color: white;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.emr-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    padding: 8px 12px;
+    background: rgba(54,179,126,0.08);
+    border-radius: 6px;
+    font-size: 0.8rem;
+    color: var(--success);
+    font-weight: 600;
+}
+
+.emr-status-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--success);
+    border-radius: 50%;
+    animation: blink 2s ease-in-out infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+/* --- SECURITY SECTION --- */
+.security {
+    background: var(--text-dark);
+    color: white;
+}
+
+.security h2 {
+    font-size: 2rem;
+    margin-bottom: 12px;
+}
+
+.security-sub {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.security-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.security-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 28px 24px;
+    transition: 0.2s;
+}
+
+.security-card:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.2);
+}
+
+.security-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(0,82,204,0.3);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    margin-bottom: 16px;
+}
+
+.security-card h3 {
+    font-size: 1.05rem;
+    margin-bottom: 8px;
+    color: white;
+}
+
+.security-card p {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.5;
+}
+
+/* --- TIMELINE SECTION --- */
+.timeline h2 {
+    font-size: 2rem;
+    margin-bottom: 12px;
+}
+
+.timeline-sub {
+    font-size: 1.05rem;
+    color: var(--text-gray);
+    margin-bottom: 48px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.timeline-track {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    position: relative;
+}
+
+/* Connecting line behind the steps */
+.timeline-track::before {
+    content: '';
+    position: absolute;
+    top: 24px;
+    left: calc(12.5% + 12px);
+    right: calc(12.5% + 12px);
+    height: 3px;
+    background: #EBECF0;
+    z-index: 0;
+}
+
+.timeline-step {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.timeline-dot {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--bg-light);
+    border: 3px solid #EBECF0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px auto;
+    font-weight: 800;
+    font-size: 0.8rem;
+    color: var(--text-gray);
+    transition: 0.2s;
+}
+
+.timeline-step.current .timeline-dot {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: white;
+    box-shadow: 0 0 0 6px rgba(0,82,204,0.15);
+}
+
+.timeline-step h3 {
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+    color: var(--text-dark);
+}
+
+.timeline-step p {
+    font-size: 0.85rem;
+    color: var(--text-gray);
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+.timeline-step .timeline-label {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--primary);
+    background: rgba(0,82,204,0.08);
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+/* --- FOOTER --- */
+footer {
+    padding: 40px 0;
+    text-align: center;
+    color: var(--text-gray);
+    font-size: 0.85rem;
+    border-top: 1px solid #EBECF0;
+}
+
+/* --- MOBILE RESPONSIVE --- */
+@media (max-width: 768px) {
+    .hero {
+        padding-top: 110px;
+        padding-bottom: 40px;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .section-padding {
+        padding: 50px 0;
+    }
+
+    .patient-cards-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .security-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .timeline-track {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .timeline-track::before {
+        top: 0;
+        bottom: 0;
+        left: 23px;
+        right: auto;
+        width: 3px;
+        height: auto;
+    }
+
+    .timeline-step {
+        display: grid;
+        grid-template-columns: 48px 1fr;
+        gap: 16px;
+        text-align: left;
+    }
+
+    .timeline-dot {
+        margin: 0;
+    }
+
+    .timeline-step-content {
+        padding-top: 4px;
+    }
+
+    .timeline-step p {
+        max-width: none;
+    }
+
+    .demo h2,
+    .security h2,
+    .timeline h2 {
+        font-size: 1.75rem;
+    }
+
+    .nav-wrapper .btn {
+        padding: 10px 16px;
+        font-size: 0.85rem;
+    }
+
+    .card-header {
+        padding: 16px;
+    }
+
+    .card-body-inner {
+        padding: 0 16px 16px 16px;
+    }
+
+    .code-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+    }
+}
+
+@media (max-width: 375px) {
+    .hero h1 {
+        font-size: 1.75rem;
+    }
+
+    .container {
+        padding: 0 16px;
+    }
+}

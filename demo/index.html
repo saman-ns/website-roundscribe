@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="RoundScribe Interactive Demo — See AI-powered nursing home rounding notes and OHIP billing code suggestions in action.">
+    <meta name="robots" content="noindex, nofollow">
+
+    <title>RoundScribe Demo | Interactive Walkthrough</title>
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container flex nav-wrapper">
+            <a href="https://roundscribe.beavernets.com" class="logo">
+                RoundScribe <span class="badge">BETA</span>
+            </a>
+            <a href="https://roundscribe.beavernets.com" class="btn btn-outline" style="padding: 10px 20px; font-size: 0.9rem;">Back to Main Site</a>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <h1>See <span class="highlight">RoundScribe</span> In Action</h1>
+            <p>Walk through a real nursing home rounding scenario. Three patients, three SOAP notes, accurate OHIP billing codes — generated from a single recording.</p>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE DEMO -->
+    <section class="section-padding demo" id="demo">
+        <div class="container">
+            <h2 class="text-center">Interactive Walkthrough</h2>
+            <p class="text-center demo-sub">Click any patient to see their generated SOAP note and suggested OHIP billing codes.</p>
+
+            <div class="patient-cards-grid">
+
+                <!-- Patient 1: Room 204 -->
+                <div class="demo-patient-card active" data-patient="1">
+                    <div class="card-header">
+                        <div class="card-room">204</div>
+                        <div class="card-header-text">
+                            <h3>M. Thompson</h3>
+                            <span>HTN management, monthly visit</span>
+                        </div>
+                        <div class="card-toggle">&#9660;</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-body-inner">
+                            <div class="soap-note">
+                                <span class="soap-label">S:</span> Patient reports improved BP control since dosage adjustment last month. No dizziness, headaches, or ankle swelling. Sleeping well. Appetite good per nursing staff.<br><br>
+                                <span class="soap-label">O:</span> BP 132/84 (prev 148/92), HR 72 regular. Alert, oriented x3. No peripheral edema. Weight stable at 78kg.<br><br>
+                                <span class="soap-label">A:</span> Essential hypertension, well-controlled on current regimen. Improved since amlodipine titration.<br><br>
+                                <span class="soap-label">P:</span> Continue amlodipine 5mg daily. Continue monitoring BP weekly. Follow up in 4 weeks. No medication changes needed.
+                            </div>
+                            <div class="billing-codes-list">
+                                <div class="billing-code-row">
+                                    <div class="code-info">
+                                        <span class="code-label">W010</span>
+                                        <span class="code-desc">Monthly nursing home visit</span>
+                                    </div>
+                                    <span class="code-fee">$115.25</span>
+                                </div>
+                                <div class="billing-code-row">
+                                    <div class="code-info">
+                                        <span class="code-label">W960</span>
+                                        <span class="code-desc">LTC special visit premium</span>
+                                    </div>
+                                    <span class="code-fee">$36.40</span>
+                                </div>
+                            </div>
+                            <div class="billing-total">
+                                <span>Session Total</span>
+                                <span>$151.65</span>
+                            </div>
+                            <div class="emr-status">
+                                <div class="emr-status-dot"></div>
+                                Ready for EMR
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Patient 2: Room 207 -->
+                <div class="demo-patient-card" data-patient="2">
+                    <div class="card-header">
+                        <div class="card-room">207</div>
+                        <div class="card-header-text">
+                            <h3>R. Patel</h3>
+                            <span>Fall assessment, wound check</span>
+                        </div>
+                        <div class="card-toggle">&#9660;</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-body-inner">
+                            <div class="soap-note">
+                                <span class="soap-label">S:</span> Nursing staff reports patient had a near-fall yesterday reaching for walker. No injury. Patient says left knee "gives out sometimes." Denies pain at wound site on right shin.<br><br>
+                                <span class="soap-label">O:</span> Gait assessed — mildly unsteady, uses walker. Left knee: no effusion, mild crepitus on flexion. Right shin wound: 2cm, clean, granulating well, no erythema or discharge. Vitals stable.<br><br>
+                                <span class="soap-label">A:</span> 1. Fall risk — likely related to left knee instability. 2. Right shin laceration — healing appropriately.<br><br>
+                                <span class="soap-label">P:</span> Physiotherapy reassessment for fall prevention. Continue current wound care protocol. Reassess wound in 1 week. Updated fall risk score in chart.
+                            </div>
+                            <div class="billing-codes-list">
+                                <div class="billing-code-row">
+                                    <div class="code-info">
+                                        <span class="code-label">W121</span>
+                                        <span class="code-desc">Subsequent nursing home visit</span>
+                                    </div>
+                                    <span class="code-fee">$34.10</span>
+                                </div>
+                                <div class="billing-code-row">
+                                    <div class="code-info">
+                                        <span class="code-label">W960</span>
+                                        <span class="code-desc">LTC special visit premium</span>
+                                    </div>
+                                    <span class="code-fee">$36.40</span>
+                                </div>
+                            </div>
+                            <div class="billing-total">
+                                <span>Session Total</span>
+                                <span>$70.50</span>
+                            </div>
+                            <div class="emr-status">
+                                <div class="emr-status-dot"></div>
+                                Ready for EMR
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Patient 3: Room 211 -->
+                <div class="demo-patient-card" data-patient="3">
+                    <div class="card-header">
+                        <div class="card-room">211</div>
+                        <div class="card-header-text">
+                            <h3>J. Williams</h3>
+                            <span>Cognitive assessment, family update</span>
+                        </div>
+                        <div class="card-toggle">&#9660;</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-body-inner">
+                            <div class="soap-note">
+                                <span class="soap-label">S:</span> Daughter present — reports father has been more confused at sundown over past 2 weeks. Wandering at night per nursing staff. Eating less. No new medications. No recent illness or falls.<br><br>
+                                <span class="soap-label">O:</span> MMSE 18/30 (prev 22/30 three months ago). Oriented to person only. Pleasant, cooperative. No focal neurological deficits. Vitals within normal limits. Weight down 1.5kg from last month.<br><br>
+                                <span class="soap-label">A:</span> Alzheimer's dementia — progressive cognitive decline with sundowning and weight loss. Significant 4-point MMSE drop warrants attention.<br><br>
+                                <span class="soap-label">P:</span> 1. Review donepezil dosing — consider increase to 10mg. 2. Nutritional supplements, dietary consult. 3. Nursing to implement sundowning protocol. 4. Family meeting to discuss care trajectory and goals of care. Follow up 2 weeks.
+                            </div>
+                            <div class="billing-codes-list">
+                                <div class="billing-code-row">
+                                    <div class="code-info">
+                                        <span class="code-label">W010</span>
+                                        <span class="code-desc">Monthly nursing home visit</span>
+                                    </div>
+                                    <span class="code-fee">$115.25</span>
+                                </div>
+                                <div class="billing-code-row">
+                                    <div class="code-info">
+                                        <span class="code-label">W105</span>
+                                        <span class="code-desc">Chronic care assessment</span>
+                                    </div>
+                                    <span class="code-fee">$87.75</span>
+                                </div>
+                            </div>
+                            <div class="billing-total">
+                                <span>Session Total</span>
+                                <span>$203.00</span>
+                            </div>
+                            <div class="emr-status">
+                                <div class="emr-status-dot"></div>
+                                Ready for EMR
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Round summary -->
+            <div style="margin-top: 32px; text-align: center;">
+                <div style="display: inline-block; background: white; border: 2px solid var(--primary); border-radius: 10px; padding: 16px 32px;">
+                    <span style="font-size: 0.85rem; color: var(--text-gray); display: block; margin-bottom: 4px;">Total Round Revenue</span>
+                    <span style="font-size: 1.75rem; font-weight: 800; color: var(--primary);">$425.15</span>
+                    <span style="font-size: 0.85rem; color: var(--text-gray); display: block; margin-top: 4px;">3 patients &middot; 5 billing codes &middot; auto-generated</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECURITY & COMPLIANCE -->
+    <section class="section-padding security" id="security">
+        <div class="container">
+            <h2 class="text-center">Your Data, Protected</h2>
+            <p class="text-center security-sub">Cybersecurity-grade infrastructure from day one. Not an afterthought.</p>
+
+            <div class="security-grid">
+                <div class="security-card">
+                    <div class="security-icon">&#127464;&#127462;</div>
+                    <h3>Canadian Data Residency</h3>
+                    <p>All data processed and stored on Canadian infrastructure. No PHI leaves the country.</p>
+                </div>
+                <div class="security-card">
+                    <div class="security-icon">&#128274;</div>
+                    <h3>Offline NLP Processing</h3>
+                    <p>OHIP code analysis runs entirely on our servers. Zero third-party API calls for clinical data.</p>
+                </div>
+                <div class="security-card">
+                    <div class="security-icon">&#128737;</div>
+                    <h3>Wazuh SIEM Monitoring</h3>
+                    <p>24/7 security event monitoring with automated alerting across all infrastructure.</p>
+                </div>
+                <div class="security-card">
+                    <div class="security-icon">&#9989;</div>
+                    <h3>Check Point Partner</h3>
+                    <p>Enterprise-grade network security through our Check Point technology partnership.</p>
+                </div>
+                <div class="security-card">
+                    <div class="security-icon">&#128209;</div>
+                    <h3>PHIPA-Compliant Design</h3>
+                    <p>End-to-end encryption, audit logging, and role-based access controls built into every layer.</p>
+                </div>
+                <div class="security-card">
+                    <div class="security-icon">&#128202;</div>
+                    <h3>8,668 OHIP Codes</h3>
+                    <p>Complete Schedule of Benefits database, parsed from official Ontario MOH documentation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section class="section-padding timeline" id="timeline">
+        <div class="container">
+            <h2 class="text-center">What's Next</h2>
+            <p class="text-center timeline-sub">From concept to physician testing in weeks, not months.</p>
+
+            <div class="timeline-track">
+                <div class="timeline-step current">
+                    <div class="timeline-dot">1</div>
+                    <div class="timeline-step-content">
+                        <h3>Design & Architecture</h3>
+                        <p>Product design, landing page, interactive demo, physician feedback</p>
+                        <span class="timeline-label">Now</span>
+                    </div>
+                </div>
+                <div class="timeline-step">
+                    <div class="timeline-dot">2</div>
+                    <div class="timeline-step-content">
+                        <h3>Core Pipeline</h3>
+                        <p>Audio upload, medical transcription, SOAP note generation</p>
+                        <span class="timeline-label">Week 1-2</span>
+                    </div>
+                </div>
+                <div class="timeline-step">
+                    <div class="timeline-dot">3</div>
+                    <div class="timeline-step-content">
+                        <h3>Multi-Patient AI</h3>
+                        <p>Patient segmentation from continuous audio, OHIP code matching</p>
+                        <span class="timeline-label">Week 3-4</span>
+                    </div>
+                </div>
+                <div class="timeline-step">
+                    <div class="timeline-dot">4</div>
+                    <div class="timeline-step-content">
+                        <h3>Physician Beta</h3>
+                        <p>iOS TestFlight beta for initial physician testing and feedback</p>
+                        <span class="timeline-label">Week 5-6</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 BeaverNets Technologies Inc. | Toronto, Ontario</p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.demo-patient-card').forEach(function(card) {
+            card.addEventListener('click', function() {
+                var isActive = this.classList.contains('active');
+
+                // Close all cards
+                document.querySelectorAll('.demo-patient-card').forEach(function(c) {
+                    c.classList.remove('active');
+                });
+
+                // Toggle clicked card (if it wasn't already open)
+                if (!isActive) {
+                    this.classList.add('active');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
