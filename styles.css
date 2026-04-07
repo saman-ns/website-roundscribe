@@ -1,13 +1,15 @@
 /* --- VARIABLES --- */
 :root {
-    --primary: #0052CC;
-    --primary-dark: #003E99;
-    --secondary: #00B8D9;
-    --bg-light: #F4F5F7;
-    --text-dark: #172B4D;
-    --text-gray: #5E6C84;
+    --primary: #5B8DEF;
+    --primary-dark: #3D6BB5;
+    --secondary: #5BA8B5;
+    --bg-light: #F5F7FA;
+    --text-dark: #1E293B;
+    --text-gray: #64748B;
     --white: #FFFFFF;
-    --success: #36B37E;
+    --success: #5BBD8C;
+    --warning: #F5B971;
+    --error: #E87B7B;
 }
 
 * {
