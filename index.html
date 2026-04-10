@@ -1,247 +1,971 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="RoundScribe — AI-powered nursing home rounding notes. One recording, every patient documented, OHIP billing codes included.">
-    <meta name="keywords" content="nursing home rounding, clinical notes, OHIP billing, AI scribe, long-term care, EMR, Ontario physicians">
-    <meta name="author" content="BeaverNets Technologies Inc.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="RoundScribe — AI-powered nursing home rounding notes. One recording, every patient documented, OHIP billing codes included.">
+<meta name="keywords" content="nursing home rounding, clinical notes, OHIP billing, AI scribe, long-term care, EMR, Ontario physicians">
+<meta name="author" content="BeaverNets Technologies Inc.">
+<meta property="og:title" content="RoundScribe — AI-Powered Nursing Home Rounding Notes">
+<meta property="og:description" content="One recording. Every patient documented. OHIP billing codes included.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://roundscribe.ca">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="RoundScribe — AI-Powered Nursing Home Rounding Notes">
+<meta name="twitter:description" content="One recording. Every patient documented. OHIP billing codes included.">
+<title>RoundScribe | AI-Powered Nursing Home Rounding Notes</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ── Design System ── */
+:root {
+  --bg:           #FFFFFF;
+  --bg-subtle:    #FAFBFC;
+  --ink:          #0B1220;
+  --ink-80:       rgba(11,18,32,.80);
+  --ink-60:       rgba(11,18,32,.60);
+  --ink-40:       rgba(11,18,32,.40);
+  --ink-12:       rgba(11,18,32,.12);
+  --ink-08:       rgba(11,18,32,.08);
+  --ink-04:       rgba(11,18,32,.04);
+  --muted:        #5B6478;
+  --hair:         #EEF0F5;
 
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="RoundScribe — AI-Powered Nursing Home Rounding Notes">
-    <meta property="og:description" content="One recording. Every patient documented. OHIP billing codes included.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://roundscribe.ca">
+  --blue:         #1D4ED8;
+  --blue-mid:     #3B82F6;
+  --blue-soft:    rgba(29,78,216,.08);
+  --gold:         #F5B731;
+  --gold-soft:    rgba(245,183,49,.12);
+  --emerald:      #10B981;
+  --emerald-soft: rgba(16,185,129,.10);
 
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="RoundScribe — AI-Powered Nursing Home Rounding Notes">
-    <meta name="twitter:description" content="One recording. Every patient documented. OHIP billing codes included.">
+  --fd: 'Bricolage Grotesque', sans-serif;
+  --fb: 'Plus Jakarta Sans', sans-serif;
+  --fm: 'IBM Plex Mono', monospace;
 
-    <title>RoundScribe | AI-Powered Nursing Home Rounding Notes</title>
+  --ease:         cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-q:       cubic-bezier(0.25, 1, 0.5, 1);
 
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+  --shadow-card:  0 1px 2px rgba(11,18,32,.04), 0 12px 32px -16px rgba(11,18,32,.08);
+  --shadow-lg:    0 4px 6px rgba(11,18,32,.04), 0 24px 48px -12px rgba(11,18,32,.14);
+  --shadow-btn:   0 1px 3px rgba(11,18,32,.08), 0 8px 24px rgba(245,183,49,.20);
+  --shadow-btn-h: 0 2px 6px rgba(11,18,32,.10), 0 14px 32px rgba(245,183,49,.30);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
+body {
+  font-family: var(--fb);
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  line-height: 1.55;
+}
+a { color: inherit; text-decoration: none; }
+
+/* ── Reveal ── */
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity .65s var(--ease), transform .65s var(--ease); }
+.reveal.visible { opacity: 1; transform: none; }
+.d1 { transition-delay: .08s; }
+.d2 { transition-delay: .16s; }
+.d3 { transition-delay: .24s; }
+.d4 { transition-delay: .32s; }
+.d5 { transition-delay: .40s; }
+
+/* ── Layout ── */
+.wrap { max-width: 1160px; margin: 0 auto; padding: 0 32px; }
+
+/* ── Nav ── */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(255,255,255,.72);
+  backdrop-filter: saturate(1.5) blur(12px);
+  -webkit-backdrop-filter: saturate(1.5) blur(12px);
+  border-bottom: 1px solid transparent;
+  transition: border-color .25s, background .25s;
+}
+.nav.scrolled { border-bottom-color: var(--hair); background: rgba(255,255,255,.94); }
+.nav-inner {
+  max-width: 1160px; margin: 0 auto; padding: 15px 32px;
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px; flex-shrink: 0;
+  font-family: var(--fd); font-size: 19px; font-weight: 700;
+  letter-spacing: -.03em; color: var(--ink);
+}
+.nav-logo .s { color: var(--blue); }
+.nav-badge {
+  font-family: var(--fm); font-size: 9px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: .1em;
+  background: var(--blue-soft); color: var(--blue);
+  padding: 3px 7px; border-radius: 4px;
+}
+.nav-links { display: flex; gap: 26px; align-items: center; }
+.nav-links a { font-size: 13.5px; font-weight: 500; color: var(--ink-60); transition: color .2s; }
+.nav-links a:hover { color: var(--ink); }
+.nav-actions { display: flex; gap: 8px; align-items: center; flex-shrink: 0; }
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-family: var(--fb); font-weight: 600;
+  border-radius: 999px; cursor: pointer;
+  transition: all .25s var(--ease-q);
+  border: 1px solid transparent; white-space: nowrap;
+}
+.btn svg { width: 14px; height: 14px; flex-shrink: 0; transition: transform .2s; }
+.btn:hover svg { transform: translateX(3px); }
+.btn-primary {
+  background: var(--gold); color: var(--ink);
+  box-shadow: var(--shadow-btn);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-btn-h); background: #ffc543; }
+.btn-ghost { background: transparent; color: var(--ink); border-color: var(--ink-12); }
+.btn-ghost:hover { border-color: var(--ink-40); background: var(--ink-04); }
+.btn-sm  { padding: 9px 18px;  font-size: 13px; }
+.btn-md  { padding: 13px 24px; font-size: 14px; }
+.btn-lg  { padding: 16px 30px; font-size: 15px; }
+
+/* ── Section tag ── */
+.section-tag {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--fm); font-size: 10.5px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: .1em; color: var(--muted);
+  margin-bottom: 18px;
+}
+.section-tag::before { content: ''; width: 20px; height: 1px; background: var(--gold); }
+
+/* ── HERO ── */
+.hero {
+  padding: 150px 0 104px;
+  background: var(--bg);
+  overflow: hidden;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 72px; align-items: center;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 14px 6px 10px; border-radius: 999px;
+  background: var(--bg); border: 1px solid var(--hair);
+  font-size: 12px; font-weight: 500; color: var(--muted);
+  margin-bottom: 28px;
+}
+.hero-badge-dot {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--emerald);
+  animation: pulsedot 2s ease-out infinite;
+}
+@keyframes pulsedot {
+  0%   { box-shadow: 0 0 0 0 rgba(16,185,129,.4); }
+  80%  { box-shadow: 0 0 0 8px rgba(16,185,129,0); }
+  100% { box-shadow: 0 0 0 0 rgba(16,185,129,0); }
+}
+.hero h1 {
+  font-family: var(--fd); font-weight: 800;
+  font-size: 62px; line-height: 1.04; letter-spacing: -.032em;
+  color: var(--ink); margin-bottom: 26px;
+}
+.hero h1 .line { display: block; }
+.rot-container {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  vertical-align: bottom;
+  height: 1.04em;
+}
+.rot-word {
+  display: block;
+  position: absolute;
+  top: 0; left: 0;
+  color: var(--blue);
+  opacity: 0;
+  transform: translateY(100%);
+  transition: opacity .5s var(--ease), transform .5s var(--ease);
+  white-space: nowrap;
+}
+.rot-word.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+.rot-word.exit {
+  opacity: 0;
+  transform: translateY(-100%);
+}
+.hero-sub {
+  font-size: 17px; color: var(--muted); line-height: 1.68;
+  max-width: 490px; margin-bottom: 36px;
+}
+.hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
+.hero-features {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  font-size: 13px; color: var(--muted);
+}
+.hero-features .sep { color: var(--hair); }
+.hero-feat { display: flex; align-items: center; gap: 5px; }
+.hero-feat-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--emerald); flex-shrink: 0; }
+
+/* Hero mockup */
+.hero-mockup {
+  background: var(--bg);
+  border: 1px solid var(--hair);
+  border-radius: 20px;
+  box-shadow: var(--shadow-lg);
+  padding: 20px;
+}
+.mockup-header {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 16px; padding-bottom: 16px;
+  border-bottom: 1px solid var(--hair);
+}
+.mockup-dots { display: flex; gap: 5px; }
+.mockup-dots span {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--hair);
+}
+.mockup-dots span:nth-child(1) { background: #FF5F57; }
+.mockup-dots span:nth-child(2) { background: #FEBC2E; }
+.mockup-dots span:nth-child(3) { background: #28C840; }
+.mockup-title { font-size: 11.5px; font-weight: 600; color: var(--muted); font-family: var(--fm); margin-left: 4px; }
+.waveform {
+  background: var(--bg-subtle);
+  border: 1px solid var(--hair);
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 12px;
+}
+.wave-play {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: var(--blue); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; flex-shrink: 0;
+}
+.wave-bars {
+  display: flex; align-items: center; gap: 2px;
+  flex: 1; height: 28px;
+}
+.wave-bars span {
+  display: block; width: 3px; border-radius: 2px;
+  background: var(--blue); opacity: .4;
+  animation: wavebar 1.4s ease-in-out infinite;
+}
+@keyframes wavebar {
+  0%, 100% { opacity: .25; transform: scaleY(.5); }
+  50%       { opacity: .7;  transform: scaleY(1); }
+}
+.wave-time { font-family: var(--fm); font-size: 11px; color: var(--muted); font-weight: 500; flex-shrink: 0; }
+.mockup-processing {
+  text-align: center; padding: 10px 0 8px;
+  font-family: var(--fm); font-size: 10px; font-weight: 600;
+  color: var(--muted); letter-spacing: .06em; text-transform: uppercase;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.mockup-processing::before, .mockup-processing::after {
+  content: ''; flex: 1; height: 1px; background: var(--hair);
+}
+.patient-list { display: flex; flex-direction: column; gap: 8px; }
+.patient-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 11px 14px;
+  border: 1px solid var(--hair);
+  border-radius: 10px; background: var(--bg);
+  transition: border-color .2s, box-shadow .2s;
+}
+.patient-item:hover { border-color: var(--blue-mid); box-shadow: 0 2px 12px var(--blue-soft); }
+.patient-color {
+  width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+}
+.patient-info { flex: 1; min-width: 0; }
+.patient-name { font-size: 12.5px; font-weight: 600; color: var(--ink); }
+.patient-detail { font-size: 11px; color: var(--muted); margin-top: 1px; }
+.patient-check {
+  font-size: 12px; font-weight: 700; color: var(--emerald);
+  background: var(--emerald-soft); width: 22px; height: 22px;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.patient-code {
+  font-family: var(--fm); font-size: 10px; font-weight: 600;
+  color: var(--blue); background: var(--blue-soft);
+  padding: 3px 7px; border-radius: 4px; flex-shrink: 0;
+}
+
+/* ── PROBLEM (dark) ── */
+.problem {
+  padding: 96px 0;
+  background: var(--ink);
+  overflow: hidden;
+}
+.problem .section-tag { color: rgba(255,255,255,.45); }
+.problem .section-tag::before { background: var(--gold); }
+.problem-head { max-width: 640px; margin-bottom: 56px; }
+.problem-head h2 {
+  font-family: var(--fd); font-weight: 700;
+  font-size: 44px; line-height: 1.08; letter-spacing: -.025em;
+  color: #fff; margin-bottom: 16px;
+}
+.problem-head h2 .g { color: var(--gold); }
+.problem-head p { font-size: 16.5px; color: rgba(255,255,255,.55); line-height: 1.68; }
+.problem-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+}
+.problem-card {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 16px; padding: 28px 26px;
+  transition: background .2s, border-color .2s;
+}
+.problem-card:hover {
+  background: rgba(255,255,255,.08);
+  border-color: rgba(255,255,255,.16);
+}
+.problem-num {
+  font-family: var(--fm); font-size: 10.5px; font-weight: 600;
+  color: var(--gold); letter-spacing: .08em; margin-bottom: 14px;
+}
+.problem-card h3 {
+  font-family: var(--fd); font-weight: 700;
+  font-size: 18px; color: #fff; margin-bottom: 10px;
+}
+.problem-card p { font-size: 14px; color: rgba(255,255,255,.55); line-height: 1.65; }
+
+/* ── HOW IT WORKS ── */
+.how { padding: 96px 0; }
+.how-head { max-width: 560px; margin-bottom: 56px; }
+.how-head h2 {
+  font-family: var(--fd); font-weight: 700;
+  font-size: 44px; line-height: 1.08; letter-spacing: -.025em;
+  color: var(--ink); margin-bottom: 14px;
+}
+.how-head p { font-size: 16.5px; color: var(--muted); line-height: 1.65; }
+.how-steps {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 2px; background: var(--hair); border-radius: 20px; overflow: hidden;
+}
+.how-step {
+  background: var(--bg); padding: 32px 26px;
+}
+.step-num {
+  font-family: var(--fm); font-size: 10.5px; font-weight: 600;
+  color: var(--gold); letter-spacing: .06em; margin-bottom: 20px;
+}
+.step-icon {
+  width: 46px; height: 46px; border-radius: 12px;
+  background: var(--blue-soft);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; margin-bottom: 20px;
+}
+.how-step h3 {
+  font-family: var(--fd); font-weight: 700;
+  font-size: 18px; color: var(--ink); margin-bottom: 10px;
+}
+.how-step p { font-size: 13.5px; color: var(--muted); line-height: 1.65; }
+
+/* ── BILLING ── */
+.billing { padding: 96px 0; background: var(--bg-subtle); }
+.billing-grid {
+  display: grid; grid-template-columns: 1fr 1.1fr;
+  gap: 72px; align-items: center;
+}
+.billing-copy h2 {
+  font-family: var(--fd); font-weight: 700;
+  font-size: 44px; line-height: 1.08; letter-spacing: -.025em;
+  color: var(--ink); margin-bottom: 16px;
+}
+.billing-copy h2 .g { color: var(--gold); }
+.billing-copy p {
+  font-size: 16.5px; color: var(--muted); line-height: 1.68; margin-bottom: 28px;
+}
+.billing-stat {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--bg); border: 1px solid var(--hair);
+  padding: 10px 18px; border-radius: 999px;
+  font-size: 13px; font-weight: 600; color: var(--muted);
+  box-shadow: var(--shadow-card);
+}
+.billing-stat-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--emerald); }
+.billing-mockup {
+  background: var(--bg);
+  border: 1px solid var(--hair);
+  border-radius: 18px;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+.bm-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--hair);
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 600; color: var(--ink);
+}
+.bm-header-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--blue-mid); }
+.bm-body { padding: 18px 20px; }
+.bm-soap {
+  background: var(--bg-subtle);
+  border: 1px solid var(--hair);
+  border-radius: 10px; padding: 14px;
+  margin-bottom: 16px;
+  font-size: 12.5px; color: var(--muted);
+  line-height: 1.65;
+}
+.bm-soap .soap-label {
+  font-family: var(--fm); font-size: 9.5px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: .08em;
+  color: var(--blue); margin-bottom: 8px;
+}
+.bm-codes { display: flex; flex-direction: column; gap: 8px; }
+.bm-code {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 11px 14px;
+  border: 1px solid var(--emerald-soft);
+  background: rgba(16,185,129,.03);
+  border-radius: 10px;
+}
+.bm-code-left { display: flex; align-items: center; gap: 10px; }
+.bm-code-tag {
+  font-family: var(--fm); font-size: 12px; font-weight: 600;
+  color: var(--blue); background: var(--blue-soft);
+  padding: 4px 8px; border-radius: 5px;
+}
+.bm-code-desc { font-size: 12.5px; color: var(--muted); }
+.bm-code-fee { font-size: 13px; font-weight: 700; color: var(--emerald); }
+.bm-footer {
+  padding: 12px 20px; border-top: 1px solid var(--hair);
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 12px; color: var(--muted);
+}
+.bm-total { font-weight: 700; color: var(--ink); font-size: 13px; }
+
+/* ── STATS ── */
+.stats {
+  padding: 72px 0;
+  border-top: 1px solid var(--hair);
+  border-bottom: 1px solid var(--hair);
+}
+.stats-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px;
+}
+.stat-item { text-align: center; }
+.stat-num {
+  font-family: var(--fd); font-weight: 800;
+  font-size: 42px; letter-spacing: -.035em;
+  color: var(--ink); line-height: 1; margin-bottom: 8px;
+}
+.stat-num .sa { color: var(--blue); }
+.stat-label { font-size: 13.5px; color: var(--muted); font-weight: 500; }
+
+/* ── DIFFERENTIATORS ── */
+.diff { padding: 96px 0; }
+.diff-head { max-width: 560px; margin-bottom: 56px; }
+.diff-head h2 {
+  font-family: var(--fd); font-weight: 700;
+  font-size: 44px; line-height: 1.08; letter-spacing: -.025em;
+  color: var(--ink); margin-bottom: 14px;
+}
+.diff-head p { font-size: 16.5px; color: var(--muted); line-height: 1.65; }
+.diff-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+}
+.diff-card {
+  background: var(--bg);
+  border: 1px solid var(--hair);
+  border-radius: 18px; padding: 32px 28px;
+  box-shadow: var(--shadow-card);
+  transition: box-shadow .25s, border-color .25s, transform .25s var(--ease-q);
+}
+.diff-card:hover { box-shadow: var(--shadow-lg); border-color: var(--ink-12); transform: translateY(-3px); }
+.diff-icon-wrap {
+  width: 48px; height: 48px; border-radius: 13px;
+  background: var(--blue-soft);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; margin-bottom: 22px;
+}
+.diff-card h3 {
+  font-family: var(--fd); font-weight: 700;
+  font-size: 18px; color: var(--ink); margin-bottom: 10px;
+}
+.diff-card p { font-size: 13.5px; color: var(--muted); line-height: 1.68; }
+
+/* ── TRUST ── */
+.trust { padding: 96px 0; background: var(--bg-subtle); }
+.trust-box {
+  background: var(--ink);
+  border-radius: 24px; padding: 64px;
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 56px; align-items: center;
+}
+.trust-copy h2 {
+  font-family: var(--fd); font-weight: 700;
+  font-size: 36px; letter-spacing: -.025em;
+  color: #fff; line-height: 1.12; margin-bottom: 16px;
+}
+.trust-copy h2 span { color: var(--gold); }
+.trust-copy p { font-size: 15.5px; color: rgba(255,255,255,.58); line-height: 1.68; max-width: 460px; }
+.trust-badges { display: flex; flex-direction: column; gap: 10px; min-width: 230px; }
+.trust-badge {
+  display: flex; align-items: center; gap: 12px;
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.11);
+  border-radius: 12px; padding: 13px 16px;
+  font-size: 13px; font-weight: 600; color: rgba(255,255,255,.88);
+  transition: background .2s;
+}
+.trust-badge:hover { background: rgba(255,255,255,.11); }
+.trust-badge-icon { font-size: 17px; }
+
+/* ── FINAL CTA ── */
+.cta { padding: 120px 0; text-align: center; }
+.cta h2 {
+  font-family: var(--fd); font-weight: 800;
+  font-size: 52px; letter-spacing: -.035em;
+  color: var(--ink); line-height: 1.05; margin-bottom: 20px;
+}
+.cta h2 span { color: var(--blue); }
+.cta-sub {
+  font-size: 17px; color: var(--muted); line-height: 1.65;
+  margin-bottom: 40px; max-width: 500px; margin-left: auto; margin-right: auto;
+}
+.cta-buttons { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.cta-note {
+  margin-top: 20px; font-size: 13px; color: var(--ink-40);
+}
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--hair);
+  padding: 40px 0;
+}
+.footer-inner {
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+}
+.footer-logo {
+  font-family: var(--fd); font-size: 16px; font-weight: 700;
+  letter-spacing: -.025em; color: var(--ink);
+}
+.footer-logo .s { color: var(--blue); }
+.footer-links { display: flex; gap: 20px; }
+.footer-links a { font-size: 13px; color: var(--muted); transition: color .2s; }
+.footer-links a:hover { color: var(--ink); }
+.footer-right { font-size: 13px; color: var(--muted); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 960px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+  .hero h1 { font-size: 46px; }
+  .hero-sub { max-width: 100%; }
+  .hero-mockup { max-width: 480px; }
+  .problem-grid { grid-template-columns: 1fr 1fr; }
+  .how-steps { grid-template-columns: 1fr 1fr; }
+  .billing-grid { grid-template-columns: 1fr; }
+  .billing-copy { order: -1; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .diff-grid { grid-template-columns: 1fr 1fr; }
+  .trust-box { grid-template-columns: 1fr; padding: 44px; gap: 32px; }
+  .trust-badges { flex-direction: row; flex-wrap: wrap; min-width: unset; }
+  .cta h2 { font-size: 40px; }
+  .footer-inner { flex-direction: column; text-align: center; }
+  .footer-links { justify-content: center; }
+}
+@media (max-width: 600px) {
+  .wrap { padding: 0 20px; }
+  .nav-links { display: none; }
+  .nav-inner { padding: 14px 20px; }
+  .hero { padding: 120px 0 72px; }
+  .hero h1 { font-size: 36px; }
+  .problem-grid { grid-template-columns: 1fr; }
+  .how-steps { grid-template-columns: 1fr; }
+  .diff-grid { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .trust-box { padding: 32px 24px; }
+  .trust-copy h2 { font-size: 28px; }
+  .cta h2 { font-size: 30px; }
+  .cta-buttons { flex-direction: column; align-items: center; }
+  .how-step { border-radius: 0; }
+  .problem-head h2 { font-size: 32px; }
+  .how-head h2, .billing-copy h2, .diff-head h2 { font-size: 32px; }
+}
+</style>
 </head>
 <body>
 
-    <!-- HEADER -->
-    <header>
-        <div class="container flex nav-wrapper">
-            <div class="logo">
-                RoundScribe <span class="badge">BETA</span>
+<!-- NAV -->
+<nav class="nav" id="main-nav">
+  <div class="nav-inner">
+    <div class="nav-logo">
+      Round<span class="s">Scribe</span>
+      <span class="nav-badge">Beta</span>
+    </div>
+    <div class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#billing">OHIP Billing</a>
+      <a href="#compliance">PHIPA</a>
+      <a href="demo/">See Demo</a>
+    </div>
+    <div class="nav-actions">
+      <a href="https://app.roundscribe.ca" class="btn btn-ghost btn-sm">Open App</a>
+      <a href="mailto:saman@physicianbillingassistant.ca?subject=RoundScribe%20Demo%20Request" class="btn btn-primary btn-sm">
+        Book a Demo
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="hero-badge reveal">
+          <span class="hero-badge-dot"></span>
+          Invite-only beta &middot; Ontario physicians
+        </div>
+        <h1 class="reveal d1">
+          <span class="line">One recording.</span>
+          <span class="line">Every patient —</span>
+          <span class="line"><span class="rot-container" id="rot-container" aria-live="polite"><span class="rot-word active" id="rot-w0">documented.</span><span class="rot-word" id="rot-w1">billed.</span><span class="rot-word" id="rot-w2">done.</span></span></span>
+        </h1>
+        <p class="hero-sub reveal d2">
+          Record your entire nursing home round — all 15 patients in one continuous audio. RoundScribe segments the recording, generates a separate SOAP note per patient, and suggests OHIP billing codes. Ready before you leave the building.
+        </p>
+        <div class="hero-ctas reveal d3">
+          <a href="https://app.roundscribe.ca" class="btn btn-primary btn-lg">
+            Open App
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </a>
+          <a href="mailto:saman@physicianbillingassistant.ca?subject=RoundScribe%20Demo%20Request" class="btn btn-ghost btn-lg">Book a Demo</a>
+        </div>
+        <div class="hero-features reveal d4">
+          <span class="hero-feat"><span class="hero-feat-dot"></span> Multi-patient segmentation</span>
+          <span class="sep">&middot;</span>
+          <span class="hero-feat"><span class="hero-feat-dot"></span> OHIP billing codes</span>
+          <span class="sep">&middot;</span>
+          <span class="hero-feat"><span class="hero-feat-dot"></span> PHIPA-compliant</span>
+        </div>
+      </div>
+
+      <div class="hero-mockup reveal d2">
+        <div class="mockup-header">
+          <div class="mockup-dots"><span></span><span></span><span></span></div>
+          <span class="mockup-title">roundscribe &mdash; round_2026-04-10</span>
+        </div>
+
+        <div class="waveform">
+          <div class="wave-play">&#9654;</div>
+          <div class="wave-bars">
+            <span style="height:10px;animation-delay:0s"></span>
+            <span style="height:20px;animation-delay:.1s"></span>
+            <span style="height:14px;animation-delay:.2s"></span>
+            <span style="height:26px;animation-delay:.05s"></span>
+            <span style="height:9px;animation-delay:.3s"></span>
+            <span style="height:22px;animation-delay:.15s"></span>
+            <span style="height:16px;animation-delay:.25s"></span>
+            <span style="height:28px;animation-delay:.08s"></span>
+            <span style="height:12px;animation-delay:.22s"></span>
+            <span style="height:24px;animation-delay:.12s"></span>
+            <span style="height:18px;animation-delay:.18s"></span>
+            <span style="height:10px;animation-delay:.28s"></span>
+            <span style="height:20px;animation-delay:.06s"></span>
+            <span style="height:14px;animation-delay:.24s"></span>
+            <span style="height:26px;animation-delay:.14s"></span>
+          </div>
+          <div class="wave-time">24:31</div>
+        </div>
+
+        <div class="mockup-processing">AI Processing</div>
+
+        <div class="patient-list">
+          <div class="patient-item">
+            <div class="patient-color" style="background:#3B82F6"></div>
+            <div class="patient-info">
+              <div class="patient-name">Room 204 &mdash; M. Thompson</div>
+              <div class="patient-detail">BP review, medication adjustment</div>
             </div>
-            <div style="display: flex; gap: 10px;">
-                <a href="https://app.roundscribe.ca" class="btn btn-outline" style="padding: 10px 20px; font-size: 0.9rem;">Open App</a>
-                <a href="mailto:saman@physicianbillingassistant.ca?subject=RoundScribe%20Demo%20Request" class="btn" style="padding: 10px 20px; font-size: 0.9rem;">Book a Demo</a>
+            <span class="patient-code">W010</span>
+            <span class="patient-check">&#10003;</span>
+          </div>
+          <div class="patient-item">
+            <div class="patient-color" style="background:#8B5CF6"></div>
+            <div class="patient-info">
+              <div class="patient-name">Room 207 &mdash; R. Patel</div>
+              <div class="patient-detail">Fall risk assessment, wound check</div>
             </div>
-        </div>
-    </header>
-
-    <!-- HERO -->
-    <section class="hero">
-        <div class="container">
-            <div class="grid hero-grid">
-                <div>
-                    <h1>Your Nursing Home Rounds. <span class="highlight">Documented in Minutes,</span> Not Hours.</h1>
-                    <p>Record one continuous audio during rounds. Get separate, structured clinical notes for every patient — ready before you leave the building.</p>
-                    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                        <a href="mailto:saman@physicianbillingassistant.ca?subject=RoundScribe%20Demo%20Request" class="btn">Book a Demo</a>
-                        <a href="#how" class="btn btn-outline">See How It Works</a>
-                    </div>
-                    <p class="trust-line">PHIPA-Compliant Design &middot; Canadian Infrastructure &middot; Built by BeaverNets</p>
-                </div>
-                <div class="hero-mockup">
-                    <div class="mockup-waveform">
-                        <div class="waveform-icon">&#9654;</div>
-                        <div class="waveform-bars">
-                            <span style="height:12px"></span><span style="height:22px;animation-delay:0.1s"></span><span style="height:16px;animation-delay:0.2s"></span><span style="height:28px;animation-delay:0.15s"></span><span style="height:10px;animation-delay:0.3s"></span><span style="height:24px;animation-delay:0.05s"></span><span style="height:18px;animation-delay:0.25s"></span><span style="height:30px;animation-delay:0.12s"></span><span style="height:14px;animation-delay:0.2s"></span><span style="height:26px;animation-delay:0.08s"></span><span style="height:20px;animation-delay:0.18s"></span><span style="height:10px;animation-delay:0.28s"></span><span style="height:22px;animation-delay:0.06s"></span><span style="height:16px;animation-delay:0.22s"></span><span style="height:28px;animation-delay:0.14s"></span><span style="height:12px;animation-delay:0.26s"></span><span style="height:24px;animation-delay:0.1s"></span><span style="height:18px;animation-delay:0.2s"></span><span style="height:14px;animation-delay:0.16s"></span><span style="height:26px;animation-delay:0.04s"></span>
-                        </div>
-                    </div>
-                    <div class="mockup-arrow">&#8595; AI Processing</div>
-                    <div class="patient-cards">
-                        <div class="patient-card">
-                            <div class="patient-dot" style="background: var(--primary);"></div>
-                            <div class="patient-card-text">
-                                <strong>Room 204 — M. Thompson</strong>
-                                <span>BP review, medication adjustment</span>
-                            </div>
-                            <span class="check">&#10003;</span>
-                        </div>
-                        <div class="patient-card">
-                            <div class="patient-dot" style="background: var(--secondary);"></div>
-                            <div class="patient-card-text">
-                                <strong>Room 207 — R. Patel</strong>
-                                <span>Fall risk assessment, wound check</span>
-                            </div>
-                            <span class="check">&#10003;</span>
-                        </div>
-                        <div class="patient-card">
-                            <div class="patient-dot" style="background: var(--success);"></div>
-                            <div class="patient-card-text">
-                                <strong>Room 211 — J. Williams</strong>
-                                <span>Cognitive assessment, family update</span>
-                            </div>
-                            <span class="check">&#10003;</span>
-                        </div>
-                    </div>
-                </div>
+            <span class="patient-code">A008</span>
+            <span class="patient-check">&#10003;</span>
+          </div>
+          <div class="patient-item">
+            <div class="patient-color" style="background:#10B981"></div>
+            <div class="patient-info">
+              <div class="patient-name">Room 211 &mdash; J. Williams</div>
+              <div class="patient-detail">Cognitive assessment, family update</div>
             </div>
+            <span class="patient-code">W105</span>
+            <span class="patient-check">&#10003;</span>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- THE PROBLEM -->
-    <section class="section-padding problem">
-        <div class="container">
-            <h2 class="text-center">The Documentation Problem</h2>
-            <div class="grid problem-grid">
-                <div class="problem-item">
-                    <div class="problem-icon">&#128203;</div>
-                    <p>You round on <strong>15 patients before lunch</strong> — each one needs a separate clinical note.</p>
-                </div>
-                <div class="problem-item">
-                    <div class="problem-icon">&#9201;</div>
-                    <p>Notes wait until evening — <strong>or Wednesday.</strong> Details fade, accuracy drops.</p>
-                </div>
-                <div class="problem-item">
-                    <div class="problem-icon">&#127908;</div>
-                    <p>Existing AI scribes expect <strong>one patient, one recording, one note.</strong></p>
-                </div>
-                <div class="problem-item">
-                    <div class="problem-icon">&#127970;</div>
-                    <p>Nursing home rounding <strong>doesn't work that way.</strong> You need a tool that matches your workflow.</p>
-                </div>
+<!-- PROBLEM -->
+<section class="problem">
+  <div class="wrap">
+    <div class="problem-head">
+      <div class="section-tag reveal">01 / The Problem</div>
+      <h2 class="reveal d1">Nursing home rounding<br>was designed for <span class="g">one patient at a time.</span></h2>
+      <p class="reveal d2">Every other AI scribe assumes you're in a clinic — one patient, one recording, one note. But you round on fifteen patients before lunch. The tool needs to match the workflow.</p>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card reveal">
+        <div class="problem-num">01 /</div>
+        <h3>15 patients before lunch</h3>
+        <p>Each one needs a separate clinical note. The math doesn't work if you stop and restart recording between every room.</p>
+      </div>
+      <div class="problem-card reveal d1">
+        <div class="problem-num">02 /</div>
+        <h3>Notes wait until evening</h3>
+        <p>Or Wednesday. Details fade, accuracy drops, and the documentation backlog becomes its own clinical risk.</p>
+      </div>
+      <div class="problem-card reveal d2">
+        <div class="problem-num">03 /</div>
+        <h3>Billing is an afterthought</h3>
+        <p>OHIP codes are looked up manually, cross-referenced against the Schedule of Benefits, and frequently left on the table.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="wrap">
+    <div class="how-head">
+      <div class="section-tag reveal">02 / How It Works</div>
+      <h2 class="reveal d1">Record once.<br>Get notes for every patient.</h2>
+      <p class="reveal d2">The entire workflow happens automatically — from a single continuous audio file to structured, per-patient clinical documentation.</p>
+    </div>
+    <div class="how-steps">
+      <div class="how-step reveal">
+        <div class="step-num">01 /</div>
+        <div class="step-icon">&#127908;</div>
+        <h3>Record</h3>
+        <p>Open the app, tap record, and round naturally. Talk to patients, nurses, and family — RoundScribe captures everything continuously.</p>
+      </div>
+      <div class="how-step reveal d1">
+        <div class="step-num">02 /</div>
+        <div class="step-icon">&#128172;</div>
+        <h3>Transcribe</h3>
+        <p>Medical-grade speech-to-text with Azure Speech Services — Canadian data residency, accents, and clinical jargon handled.</p>
+      </div>
+      <div class="how-step reveal d2">
+        <div class="step-num">03 /</div>
+        <div class="step-icon">&#9881;</div>
+        <h3>Segment</h3>
+        <p>AI detects patient boundaries automatically. "Moving to room 207" — a new note begins. No manual splitting required.</p>
+      </div>
+      <div class="how-step reveal d3">
+        <div class="step-num">04 /</div>
+        <div class="step-icon">&#128203;</div>
+        <h3>Generate</h3>
+        <p>Structured SOAP notes and OHIP billing codes per patient, ready to paste into PointClickCare or any EMR. Review, approve, done.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OHIP BILLING -->
+<section class="billing" id="billing">
+  <div class="wrap">
+    <div class="billing-grid">
+      <div class="billing-copy">
+        <div class="section-tag reveal">03 / OHIP Billing</div>
+        <h2 class="reveal d1">And while we're at it — <span class="g">your billing codes.</span></h2>
+        <p class="reveal d2">Every note is analyzed against Ontario's Schedule of Benefits. Suggested OHIP codes appear alongside each patient note — review and submit, don't research and guess.</p>
+        <div class="billing-stat reveal d3">
+          <span class="billing-stat-dot"></span>
+          2,982 OHIP service codes in our database
+        </div>
+      </div>
+
+      <div class="billing-mockup reveal d1">
+        <div class="bm-header">
+          <span class="bm-header-dot"></span>
+          Room 204 &mdash; M. Thompson
+        </div>
+        <div class="bm-body">
+          <div class="bm-soap">
+            <div class="soap-label">SOAP Note</div>
+            <strong>S:</strong> Patient reports improved BP control since last visit. No dizziness or headaches.<br>
+            <strong>O:</strong> BP 132/84, HR 72. Alert, oriented &times;3.<br>
+            <strong>A:</strong> Hypertension, well-controlled on current regimen.<br>
+            <strong>P:</strong> Continue amlodipine 5mg. Follow up in 4 weeks.
+          </div>
+          <div class="bm-codes">
+            <div class="bm-code">
+              <div class="bm-code-left">
+                <span class="bm-code-tag">W010</span>
+                <span class="bm-code-desc">Monthly nursing home management</span>
+              </div>
+              <span class="bm-code-fee">$115.25</span>
             </div>
-        </div>
-    </section>
-
-    <!-- HOW IT WORKS -->
-    <section class="section-padding" id="how">
-        <div class="container">
-            <h2 class="text-center" style="margin-bottom: 50px; font-size: 2rem;">How It Works</h2>
-            <div class="grid steps-grid">
-                <div class="step-card">
-                    <span class="step-number">01</span>
-                    <h3>Record</h3>
-                    <p>Open your phone, hit record, and round naturally. Talk to patients, nurses, and family — RoundScribe captures it all.</p>
-                </div>
-                <div class="step-card">
-                    <span class="step-number">02</span>
-                    <h3>Transcribe</h3>
-                    <p>Medical-grade speech-to-text with speaker detection. Accents, medical jargon, and ambient noise — handled.</p>
-                </div>
-                <div class="step-card">
-                    <span class="step-number">03</span>
-                    <h3>Segment</h3>
-                    <p>AI identifies patient boundaries automatically. "Moving to room 207" — new note starts. No manual splitting.</p>
-                </div>
-                <div class="step-card">
-                    <span class="step-number">04</span>
-                    <h3>Generate</h3>
-                    <p>Structured clinical notes per patient, ready to paste into any EMR. Review, approve, done.</p>
-                </div>
+            <div class="bm-code">
+              <div class="bm-code-left">
+                <span class="bm-code-tag">K002</span>
+                <span class="bm-code-desc">Chronic care management</span>
+              </div>
+              <span class="bm-code-fee">$36.85</span>
             </div>
+          </div>
         </div>
-    </section>
-
-    <!-- OHIP BILLING INTELLIGENCE -->
-    <section class="section-padding billing">
-        <div class="container">
-            <div class="grid billing-grid">
-                <div>
-                    <h2>And While We're At It...<br><span class="highlight">Your Billing Codes.</span></h2>
-                    <p class="billing-sub">Every note is analyzed against Ontario's Schedule of Benefits. Suggested OHIP codes appear alongside each patient note — review and submit, don't research and guess.</p>
-                    <span class="billing-stat">8,668 OHIP service codes in our database</span>
-                </div>
-                <div class="billing-mockup">
-                    <div class="billing-mockup-header">
-                        <span style="color: var(--primary);">&#9679;</span> Room 204 — M. Thompson
-                    </div>
-                    <div class="billing-mockup-body">
-                        <div class="billing-note-preview">
-                            S: Patient reports improved BP control since last visit. No dizziness or headaches.<br>
-                            O: BP 132/84, HR 72. Alert, oriented.<br>
-                            A: Hypertension, well-controlled on current regimen.<br>
-                            P: Continue amlodipine 5mg. Follow up 4 weeks.
-                        </div>
-                        <div class="billing-codes">
-                            <div class="billing-code-row suggested">
-                                <div>
-                                    <span class="code-label">W010</span>
-                                    <span class="code-desc"> &mdash; Monthly nursing home management</span>
-                                </div>
-                                <span class="code-fee">$115.25</span>
-                            </div>
-                            <div class="billing-code-row suggested">
-                                <div>
-                                    <span class="code-label">W960</span>
-                                    <span class="code-desc"> &mdash; LTC special visit premium</span>
-                                </div>
-                                <span class="code-fee">$36.40</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="bm-footer">
+          <span>2 codes &bull; rules engine</span>
+          <span class="bm-total">Total: $152.10</span>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- WHY THIS IS DIFFERENT -->
-    <section class="section-padding">
-        <div class="container">
-            <h2 class="text-center" style="margin-bottom: 50px; font-size: 2rem;">Why This Is Different</h2>
-            <div class="grid diff-grid">
-                <div class="diff-card">
-                    <div class="diff-icon">&#127897;</div>
-                    <h3>Multi-Patient, Single Recording</h3>
-                    <p>One continuous recording for your entire round. AI handles the rest — no stopping and starting between rooms.</p>
-                </div>
-                <div class="diff-card">
-                    <div class="diff-icon">&#128260;</div>
-                    <h3>EMR-Agnostic</h3>
-                    <p>Works with OSCAR, Accuro, PS Suite, PointClickCare — whatever your facility uses. Paste or push.</p>
-                </div>
-                <div class="diff-card">
-                    <div class="diff-icon">&#127963;</div>
-                    <h3>LTC &amp; Inpatient First</h3>
-                    <p>Built specifically for long-term care and inpatient rounding workflows. Not a clinic tool forced into a nursing home.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- STATS -->
+<section class="stats">
+  <div class="wrap">
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <div class="stat-num"><span class="sa">2,982</span></div>
+        <div class="stat-label">OHIP codes indexed</div>
+      </div>
+      <div class="stat-item reveal d1">
+        <div class="stat-num"><span class="sa">16</span></div>
+        <div class="stat-label">Deterministic billing rules</div>
+      </div>
+      <div class="stat-item reveal d2">
+        <div class="stat-num"><span class="sa">4</span></div>
+        <div class="stat-label">Layers of billing verification</div>
+      </div>
+      <div class="stat-item reveal d3">
+        <div class="stat-num"><span class="sa">100%</span></div>
+        <div class="stat-label">Canadian data residency</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- CREDIBILITY -->
-    <section class="section-padding">
-        <div class="container">
-            <div class="trust-box">
-                <h2>Built by BeaverNets Technologies</h2>
-                <p>Canadian AI studio with cybersecurity-grade infrastructure. We build AI products with domain experts — physicians bring the clinical workflow, we build the technology.</p>
-                <div class="trust-badges">
-                    <span class="trust-badge">8,668 OHIP Codes</span>
-                    <span class="trust-badge">Canadian Data Residency</span>
-                    <span class="trust-badge">Check Point Partner</span>
-                    <span class="trust-badge">PHIPA-Compliant Design</span>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- DIFFERENTIATORS -->
+<section class="diff">
+  <div class="wrap">
+    <div class="diff-head">
+      <div class="section-tag reveal">04 / Why Different</div>
+      <h2 class="reveal d1">No other scribe does this.</h2>
+      <p class="reveal d2">Abridge, Nabla, DeepScribe, Tali — all built for single-patient clinic encounters. RoundScribe is the only tool built for the nursing home rounding workflow.</p>
+    </div>
+    <div class="diff-grid">
+      <div class="diff-card reveal">
+        <div class="diff-icon-wrap">&#127897;</div>
+        <h3>Multi-Patient, Single Recording</h3>
+        <p>One continuous audio for your entire round. AI handles segmentation — no stopping between rooms, no naming patients, no manual splits.</p>
+      </div>
+      <div class="diff-card reveal d1">
+        <div class="diff-icon-wrap">&#128260;</div>
+        <h3>EMR-Agnostic Output</h3>
+        <p>Formatted for PointClickCare, OSCAR, Accuro, PS Suite — paste directly or push via API. No lock-in to a specific EMR.</p>
+      </div>
+      <div class="diff-card reveal d2">
+        <div class="diff-icon-wrap">&#127963;</div>
+        <h3>LTC &amp; Inpatient First</h3>
+        <p>Built specifically for long-term care and nursing home rounds with physician input from day one — not a clinic tool forced into the wrong workflow.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- CTA -->
-    <section class="section-padding cta text-center">
-        <div class="container">
-            <h2>Let's Talk About Your Workflow</h2>
-            <p>We're building RoundScribe with physician input from day one.<br>If nursing home documentation is eating your evenings, let's fix it together.</p>
-            <a href="mailto:saman@physicianbillingassistant.ca?subject=RoundScribe%20Demo%20Request" class="btn">Book a Demo</a>
-        </div>
-    </section>
+<!-- TRUST / PHIPA -->
+<section class="trust" id="compliance">
+  <div class="wrap">
+    <div class="trust-box">
+      <div class="trust-copy">
+        <div class="section-tag reveal" style="color:rgba(255,255,255,.4)">05 / PHIPA Compliance</div>
+        <h2 class="reveal d1">Built for <span>Canadian healthcare</span> from day one.</h2>
+        <p class="reveal d2">PHI never leaves Canada. Azure OpenAI and Azure Speech are deployed in Canada East with Standard Regional routing — not Global Standard, which sends data abroad. Every access to patient data is PHIPA audit-logged.</p>
+      </div>
+      <div class="trust-badges reveal d2">
+        <div class="trust-badge"><span class="trust-badge-icon">&#127809;</span> Canadian Data Residency</div>
+        <div class="trust-badge"><span class="trust-badge-icon">&#128274;</span> PHIPA Audit Logging</div>
+        <div class="trust-badge"><span class="trust-badge-icon">&#9989;</span> Azure Canada East</div>
+        <div class="trust-badge"><span class="trust-badge-icon">&#128203;</span> PHIPA-Compliant Design</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- FOOTER -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 BeaverNets Technologies Inc. | Toronto, Ontario</p>
-        </div>
-    </footer>
+<!-- FINAL CTA -->
+<section class="cta">
+  <div class="wrap">
+    <h2 class="reveal">Your round, <span>documented.</span><br>Before you leave the building.</h2>
+    <p class="cta-sub reveal d1">We're building RoundScribe with physician input from day one. If nursing home documentation is eating your evenings, let's fix it together.</p>
+    <div class="cta-buttons reveal d2">
+      <a href="https://app.roundscribe.ca" class="btn btn-primary btn-lg">
+        Open App
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </a>
+      <a href="mailto:saman@physicianbillingassistant.ca?subject=RoundScribe%20Demo%20Request" class="btn btn-ghost btn-lg">Book a Demo</a>
+    </div>
+    <p class="cta-note reveal d3">Invite-only beta &middot; Ontario physicians only &middot; No credit card required</p>
+  </div>
+</section>
 
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="footer-logo">Round<span class="s">Scribe</span></div>
+      <div class="footer-links">
+        <a href="demo/">Interactive Demo</a>
+        <a href="mailto:saman@physicianbillingassistant.ca">Contact</a>
+      </div>
+      <div class="footer-right">&copy; 2026 BeaverNets Technologies Inc. &middot; Toronto, Ontario &#127809;</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── Nav scroll state ── */
+const nav = document.getElementById('main-nav');
+const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 20);
+window.addEventListener('scroll', onScroll, { passive: true });
+
+/* ── Reveal on scroll ── */
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+}, { threshold: 0.12 });
+reveals.forEach(el => io.observe(el));
+
+/* ── Rotating hero word ── */
+(function() {
+  const words = ['documented.', 'billed.', 'done.'];
+  const els = words.map((_, i) => document.getElementById('rot-w' + i));
+  const container = document.getElementById('rot-container');
+  if (!container) return;
+
+  // Size container to widest word
+  let maxW = 0;
+  els.forEach(el => { const w = el.getBoundingClientRect().width; if (w > maxW) maxW = w; });
+  container.style.width = maxW + 'px';
+
+  let cur = 0;
+  setInterval(() => {
+    const next = (cur + 1) % words.length;
+    els[cur].classList.remove('active');
+    els[cur].classList.add('exit');
+    setTimeout(() => { els[cur].classList.remove('exit'); cur = next; els[cur].classList.add('active'); }, 500);
+  }, 2800);
+})();
+</script>
 </body>
 </html>
